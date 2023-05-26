@@ -125,7 +125,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-AUTH_USER_MODEL = 'nom-de-l-application-d-authentification-.User'
+AUTH_USER_MODEL = 'authenticate.User'
 
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'home'
