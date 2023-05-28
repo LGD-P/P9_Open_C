@@ -28,4 +28,5 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', blog.views.home, name='home'),
     path("signup/", authenticate.views.signup_page, name="signup"),
+    path('creat-ticket/', blog.views.creat_ticket, name='creat_ticket')
 ]
