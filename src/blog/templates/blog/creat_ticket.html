@@ -1,9 +1,10 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
+
 
 {% block content %}
-
-    {% form.as_p %}
-
+    <form method='post' class="creat-article"> 
+        {{ article.as_p }}
+    </form>
 {% endblock content %}
 
 

@@ -7,8 +7,24 @@
     <title>LITReview</title>
 </head>
 <body>
+    {% if user.is_authenticated %}
     <h1 class='site-title'>Bienvenue {{user.username }} sur LITReview</h1>
-    <h2 class='site-title'> Votre site de critique de livre</h2>
+    <h2 class='site-title'> Votre site de critiques de livre</h2>
+    <nav>
+        <li>
+            <form method = 'post' action=" {% url 'logout' %} ">
+                {% csrf_token %}
+                <button type="submit">Déconnexion</button>
+            </form>
+        </li>
+    </nav>
+    
+    {% else %}
+
+    <h1 class='site-title'>LITReview votre site de critiques de livre</h1>
+    
+    
+    {% endif %}
     {% block content %} {% endblock content%}
 </body>
 </html>
