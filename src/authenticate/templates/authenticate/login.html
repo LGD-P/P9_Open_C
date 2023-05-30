@@ -18,8 +18,11 @@
       <form method="post" >
         {% csrf_token %}
         {{ form|crispy }}
-        <button class="btn btn-secondary text-right" type="submit" value="login" >Connexion</button>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-secondary " type="submit" value="login" >Connexion</button>
+        </div>
       </form>
+      
     </div>
 
   </div>
