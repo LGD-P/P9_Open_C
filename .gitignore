@@ -1,4 +1,6 @@
 ./env
 /instructions
+.vscode
 env
 instructions
+to_do_list.md
