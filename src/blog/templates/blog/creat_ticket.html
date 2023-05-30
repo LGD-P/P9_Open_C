@@ -4,8 +4,9 @@
 {% block content %}
     <h1>Créer un ticket</h1>
     <form method='post' class="creat-article"> 
-        
+        {% csrf_token %}
         {{ form|crispy }}
+        <button type='submit' value="signup">Envoyer</button>
     </form>
 {% endblock %}
 

@@ -8,7 +8,7 @@ class Ticket(models.Model):
         max_length=128, verbose_name='Titre', default=None)
     description = models.TextField(max_length=2048, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                             on_delete=models.CASCADE, default=None)
+                             on_delete=models.CASCADE, blank=True)
     # gérer la redimension des images plus tard
     image = models.ImageField(null=True, blank=True)
     time_created = models.DateTimeField(auto_now=True)
