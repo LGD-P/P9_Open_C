@@ -11,7 +11,8 @@ class Ticket(models.Model):
                              on_delete=models.CASCADE, blank=True)
     # gérer la redimension des images plus tard
     image = models.ImageField(null=True, blank=True)
-    time_created = models.DateTimeField(auto_now=True)
+    time_created = models.DateTimeField(
+        auto_now=True)
 
 
 class Review(models.Model):
