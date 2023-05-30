@@ -12,4 +12,4 @@ def home(request):
 @login_required
 def creat_ticket(request):
     form = forms.TicketForms()
-    return render(request, 'blog/creat_ticket.html', context={'article': form})
+    return render(request, 'blog/creat_ticket.html', context={'form': form})

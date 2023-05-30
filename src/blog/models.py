@@ -5,7 +5,7 @@ from django.db import models
 
 class Ticket(models.Model):
     title = models.CharField(
-        max_length=128, verbose_name='titre', default=None)
+        max_length=128, verbose_name='Titre', default=None)
     description = models.TextField(max_length=2048, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, default=None)
