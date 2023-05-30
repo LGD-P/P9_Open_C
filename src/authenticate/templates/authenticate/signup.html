@@ -3,10 +3,15 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <form method='post'>
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type='submit' value="signup">Créer le compte</button>
-    <form/>
+
+
+<form method='post'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="register__action-bloc">
+        <button class="btn btn-secondary"> <a class="action-button text-white" href="{% url 'login' %}">Retourner</a></button>                       
+        <button class="btn btn-secondary" type='submit' value="signup">Créer le compte</button>
+    </div>
+<form/>
 
 {% endblock content %}

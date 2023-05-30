@@ -15,7 +15,7 @@
         <li>
             <form method = 'post' action=" {% url 'logout' %} ">
                 {% csrf_token %}
-                <button type="submit">Déconnexion</button>
+                <button class="btn btn-secondary" type="submit">Déconnexion</button>
             </form>
         </li>
     </nav>
