@@ -18,6 +18,8 @@ from django.contrib.auth.views import (
     LoginView, LogoutView)
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 import blog.views
 import authenticate.views
 
@@ -28,5 +30,11 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', blog.views.home, name='home'),
     path("signup/", authenticate.views.signup_page, name="signup"),
-    path('creat-ticket/', blog.views.creat_ticket, name='creat_ticket')
+    path('creat-ticket/', blog.views.creat_ticket, name='creat-ticket'),
+    path('posts/', blog.views.post_list, name='posts-lit')
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

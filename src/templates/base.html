@@ -9,8 +9,8 @@
 </head>
 <body class="container p-5">
     {% if user.is_authenticated %}
-    <h1 class='site-title'>{{user.username }}, bienvenue sur LITReview</h1>
-    <h2 class='site-title'> Votre site de critiques de livres</h2>
+    <h1 class="d-flex justify-content-center">{{user.username }}, bienvenue sur LITReview</h1>
+    <h2 class="d-flex justify-content-center"> Votre site de critiques de livres</h2>
     <nav>
         <li>
             <form method = 'post' action=" {% url 'logout' %} ">
@@ -22,7 +22,7 @@
     
     {% else %}
 
-    <h1 class='site-title'>LITReview votre site de critiques de livres</h1>
+    <h1 class="d-flex justify-content-center">LITReview votre site de critiques de livres</h1>
     
     {% endif %}
 
