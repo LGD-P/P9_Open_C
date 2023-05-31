@@ -10,7 +10,7 @@ class Ticket(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, blank=True)
     # gérer la redimension des images plus tard
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, upload_to="image/")
     time_created = models.DateTimeField(
         auto_now=True)
 
