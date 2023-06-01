@@ -18,7 +18,7 @@ class SignupForm(UserCreationForm):
                                            "placeholder": "Confirmation du mot de passe"}),
                                 strip=False,
                                 help_text=(
-                                    "Enter the same password as before, for verification."),
+                                    "Entrer le même mot de passe que précédement."),
                                 )
 
     class Meta(UserCreationForm.Meta):
