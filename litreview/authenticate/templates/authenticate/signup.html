@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+<form method='post'>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-secondary"> <a class="action-button text-white" href="{% url 'login' %}">Retourner</a></button>                       
+        <button class="btn btn-secondary" type='submit' value="signup">Créer le compte</button>
+    </div>
+<form/>
+
+{% endblock content %}

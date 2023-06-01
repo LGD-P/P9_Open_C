@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for post in posts %}
+
+    <div>
+        <h3>
+            {{post.title}}
+        </h3>
+        <p>Post crée par {{post.user}}</p>
+        <div class="container-fluid">
+            <div class="row">  
+    
+                <div class="col-sm-6">
+                    <p>
+                        {{post.description}}
+                    </p>
+                </div>
+                <div class="col-sm-6">
+                    {% if post.image %}
+                        <p>
+                            <img src = '{{post.image.url}}'>
+                        </p>
+                    {% endif %}
+                </div>  
+        
+                <p>
+                    {{post.time_created}}
+                </p>
+        </div>
+    </div>
+{% endfor %}
+{% endblock content %}
