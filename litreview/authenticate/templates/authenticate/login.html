@@ -3,18 +3,18 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container">
+<div class="container p-3 my-3">
   <div class="row">
 
     <div class="col-sm-6">
-      <h2 class="d-flex justify-content-center">Inscrivez-vous maintenant:</h2>
+      <h2 class="d-flex justify-content-center p-3 my-3">Inscrivez-vous maintenant:</h2>
       <form action= {% url 'signup' %} class="d-flex justify-content-center" >
         <button class="btn btn-secondary" type="submit" >S'inscrire</button>
       </form>
     </div>
 
     <div class="col-sm-6">
-      <h2 class="d-flex justify-content-center">Connectez-vous</h2>
+      <h2 class="d-flex justify-content-center p-3 my-3">Connectez-vous</h2>
       <form method="post" >
         {% csrf_token %}
         {{ form|crispy }}

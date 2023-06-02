@@ -3,6 +3,16 @@ from django.contrib.auth.forms import UserCreationForm, UsernameField
 from django.contrib.auth import get_user_model, password_validation
 
 
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=63, label=False, widget=forms.TextInput(
+        attrs={"autofocus": True, "placeholder": "Nom d'utilisateur"}))
+    password = forms.CharField(label=False,
+                               strip=False,
+                               widget=forms.PasswordInput(
+                                   attrs={"autocomplete": "new-password", "placeholder": "Mot de passe"}),
+                               )
+
+
 class SignupForm(UserCreationForm):
     username = UsernameField(label=False, widget=forms.TextInput(
         attrs={"autofocus": True, "placeholder": "Nom d'utilisateur"}))

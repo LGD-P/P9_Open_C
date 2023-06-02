@@ -25,8 +25,7 @@ import authenticate.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', LoginView.as_view(template_name='authenticate/login.html',
-                               redirect_authenticated_user=True), name='login'),
+    path('', authenticate.views.login_page, name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', blog.views.home, name='home'),
     path("signup/", authenticate.views.signup_page, name="signup"),
