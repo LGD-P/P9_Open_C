@@ -8,7 +8,8 @@ from . import forms, models
 
 @login_required
 def home(request):
-    return render(request, "blog/home.html")
+    posts = models.Ticket.objects.all().order_by('-time_created')
+    return render(request, "blog/home.html", context={"posts": posts})
 
 
 @login_required
