@@ -2,14 +2,16 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-    <h1>Créer un ticket</h1>
+<div class="container-fluid">
+    <h3 class="text-center p-3 my-3">Créer un ticket</h3>
     <form method='post' class="creat-article" enctype="multipart/form-data"> 
         {% csrf_token %}
         {{ form|crispy }}
-    <div <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-        <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
-    </div>
+        <div <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
+        </div>
     </form>
+</div>
 {% endblock %}
 
 
