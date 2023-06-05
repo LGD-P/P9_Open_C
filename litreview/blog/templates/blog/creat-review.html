@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class='container-fluid p-5 my-5 border'>
+    <h2>Critique</h2>
+    <form method='post'> 
+        {% csrf_token %}
+
+        <div class="p-2">         
+            {{ form.headline|as_crispy_field }}
+        </div>            
+
+        <div class="p-2">
+            {% include 'blog/radio-rating.html' %} 
+        </div>            
+        
+        <div class="p-2">
+            {{form.body|as_crispy_field}}
+        </div>            
+        <div class="d-md-flex justify-content-md-end">
+            <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
+        </div>
+        
+        
+
+    </form>
+</div>
+
+{% endblock content %}
+
+
+

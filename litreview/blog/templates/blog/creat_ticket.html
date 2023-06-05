@@ -7,7 +7,7 @@
     <form method='post' class="creat-article" enctype="multipart/form-data"> 
         {% csrf_token %}
         {{ form|crispy }}
-        <div <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
             <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
         </div>
     </form>

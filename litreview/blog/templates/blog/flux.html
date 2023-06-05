@@ -14,7 +14,6 @@
                 </div>
             </div>
         </div>
-
         <h3>
             {{post.title}}
         </h3>
@@ -40,6 +39,12 @@
                 </div>
 
             </div>
+        </div>
+
+        <div class="p-1 my-1">
+            <form action= "{% url 'creat-review' %} " class="d-flex justify-content-end" >
+                <button class="btn btn-secondary" type="submit" >Créer une critique</button>
+            </form>
         </div>
     </div>
 {% endfor %}
