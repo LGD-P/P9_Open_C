@@ -33,12 +33,14 @@ def creat_ticket(request):
 
 @login_required
 def creat_review(request):
-    form = forms.ReviewForms()
+    review_form = forms.ReviewForms()
+
     if request.method == "POST":
-        form = forms.ReviewForms(request.POST)
-        if form.is_valid:
-            review = form.save(commit=False)
+        review_form = forms.ReviewForms(request.POST)
+
+        if review_form.is_valid:
+            review = review_form.save()
             review.user = request.user
             review.save()
-        return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'blog/creat-review.html', context={'form': form})
+        return redirect('home')
+    return render(request, 'blog/creat-review.html', context={'review_form': review_form})
