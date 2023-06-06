@@ -1,29 +1,31 @@
 
 
-{% block content %}
-{% for post in posts %}
+
+<div> 
+    <h3  class= "p-3">Vous êtes en train de poster en réponse à:</h3>
+
     <div class='container p-3 my-3 border'>
         <div class="container-fluid">
             <div class="row">  
     
                 <div class="col-sm-6">
-                    <p>Ticket - {{post.user}}</p>
+                    <p>Ticket - {{ticket_preview.user}}</p>
                 </div>
                 <div class="col-sm-6 " style="text-align:right">
-                    <p> {{post.time_created}} </p>
+                    <p> {{ticket_preview.time_created}} </p>
                 </div>
             </div>
         </div>
         <h3>
-            {{post.title}}
+            {{ticket_preview.title}}
         </h3>
 
         <div class="container-fluid p-3 my-3">
             <div class="row">  
                 <div class="col-sm-6">
-                    {% if post.image %}
+                    {% if ticket_preview.image %}
                         <div class='d-flex justify-content-center'>
-                            <img src = '{{post.image.url}}' >
+                            <img src = '{{ticket_preview.image.url}}' >
                         </div>
                     {% else %}
                     <div class='d-flex justify-content-center'>
@@ -34,18 +36,12 @@
                 </div>  
                 <div class="col-sm-6">
                     <div>
-                        {{post.description}}
+                        {{ticket_preview.description}}
                     </div>
                 </div>
 
             </div>
         </div>
-
-        <div class="p-1 my-1">
-            <form action= "{% url 'creat-review' post.id %} " class="d-flex justify-content-end" >
-                <button class="btn btn-secondary" type="submit" >Créer une critique</button>
-            </form>
-        </div>
     </div>
-{% endfor %}
-{% endblock content %}
+</div>
+

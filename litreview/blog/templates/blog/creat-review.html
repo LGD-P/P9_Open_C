@@ -4,14 +4,9 @@
 
 {% block content %}
 
-<div class='container-fluid p-5 my-5 border'>
-{{ review_form.user }}
-</div>
-
-
-
 
 <div class='container-fluid p-5 my-5 border'>
+    {% include 'blog/display_preview_ticket.html' %}
     <h2>Critique</h2>
     <form method='post'> 
         {% csrf_token %}
@@ -21,7 +16,6 @@
         </div>            
 
         {% include 'blog/radio-rating.html' %} 
-
         
         
         <div class="p-2">
