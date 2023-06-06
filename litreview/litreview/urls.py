@@ -30,8 +30,8 @@ urlpatterns = [
     path("signup/", authenticate.views.signup_page, name="signup"),
     path('creat-ticket/', blog.views.creat_ticket, name='creat-ticket'),
     path('posts/', blog.views.post_list, name='posts-list'),
-    path('creat-review/<int:ticket_id>',
-         blog.views.creat_review, name="creat-review"),
+    path('tickets/<ticket_id>/review/add',
+         blog.views.creat_review, name="review-add"),
 ]
 
 

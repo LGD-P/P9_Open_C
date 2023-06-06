@@ -8,7 +8,7 @@
 <div class='container-fluid p-5 my-5 border'>
     {% include 'blog/display_preview_ticket.html' %}
     <h2>Critique</h2>
-    <form method='post'> 
+    <form method='post' enctype="multipart/form-data"> 
         {% csrf_token %}
 
         <div class="p-2">         
@@ -21,10 +21,10 @@
         <div class="p-2">
             {{review_form.body|as_crispy_field}}
         </div>            
+        
         <div class="d-md-flex justify-content-md-end">
             <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
         </div>
-        
         
 
     </form>

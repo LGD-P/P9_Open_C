@@ -36,11 +36,13 @@ def creat_review(request, ticket_id):
     ticket_preview = get_object_or_404(models.Ticket, id=ticket_id)
     review_form = forms.ReviewForms()
     if request.method == "POST":
+        review_form = forms.ReviewForms(request.POST, instance=ticket_preview)
         if review_form.is_valid:
-            review = review_form.save()
-            review.user = request.user
-            review.save()
-        return redirect('home')
+            print(review_form)
+            review_form.save()
+            print("ça fonctionne")
+
+            return redirect('home')
     return render(request, 'blog/creat-review.html', context={
         'review_form': review_form,
         "ticket_preview": ticket_preview
