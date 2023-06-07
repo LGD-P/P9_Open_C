@@ -1,0 +1,61 @@
+
+{% for review in reviews %}
+
+<div class='container p-3 my-3 border'>
+    <div class="container-fluid">
+        <div class="row">  
+
+            <div class="col-sm-6">
+                <p>Vous avez publié une critique: </p>
+            </div>
+            <div class="col-sm-6 " style="text-align:right">
+                <p> - {{review.time_created}} </p>
+            </div>
+        </div>
+    </div>
+    <h3>
+        {{review.headline}} {{review.rating}}
+    </h3>
+    <div>
+        {{review.body}}
+    </div>
+
+    <div class="container-fluid p-3 my-3 border">
+        <div class="row">  
+            <div class="col-sm-6">
+                {% if review.ticket.image %}
+                    <div class='d-flex justify-content-center'>
+                        <img src = '{{review.ticket.image.url}}' >
+                    </div>
+                {% else %}
+                <div class='d-flex justify-content-center'>
+                    <img src = 'media/image/no-photo-icon-free-image.jpg' >
+                </div>
+
+                {% endif %}
+            </div>  
+            <div class="col-sm-6">
+                <div>
+                    {{review.ticket.description}}
+                </div>
+            </div>
+
+        </div>
+    </div>            
+    {% if not review.ticket %}
+    <div class="p-1 my-1">
+        <form action= " " class="d-flex justify-content-end" >
+            <button class="btn btn-secondary" type="submit" >Créer une critique</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endfor %}
+
+
+
+
+
+
