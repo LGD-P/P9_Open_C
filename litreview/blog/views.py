@@ -9,7 +9,7 @@ from . import forms, models
 @login_required
 def home(request):
     posts = models.Ticket.objects.all().order_by('-time_created')
-    reviews = models.Review.objects.all()
+    reviews = models.Review.objects.all().order_by("-review_id")
     return render(request, "blog/home.html", context={"posts": posts, "reviews": reviews})
 
 
@@ -55,7 +55,6 @@ def creat_ticket_and_review(request):
             ticket = ticket_form.save(commit=False)
             ticket.user = request.user
             ticket.save()
-
             review = review_form.save(commit=False)
             review.ticket = ticket
             review.user = request.user
