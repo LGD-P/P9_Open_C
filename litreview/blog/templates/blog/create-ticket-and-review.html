@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-
 {% block content %}
 
-
-<div class='container-fluid p-5 my-5 border'>
-    {% include 'blog/display_ticket_in_review.html' %}
-    <h2>Critique</h2>
-    <form method='post' enctype="multipart/form-data"> 
+<div class="container-fluid p-5 border">
+    <h2 class="text-center p-3 my-3">Créer un ticket</h2>
+    <form method='post' class="creat-article" enctype="multipart/form-data"> 
         {% csrf_token %}
+        {{ ticket_form|crispy }}
+    
+    <h2>Critique</h2>
+
 
         <div class="p-2">         
             {{ review_form.headline|as_crispy_field }}
@@ -31,6 +32,3 @@
 </div>
 
 {% endblock content %}
-
-
-
