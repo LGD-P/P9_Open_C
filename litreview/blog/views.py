@@ -2,15 +2,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
+from django.db.models import Value, CharField
+from itertools import chain
 from . import forms, models
 
 
 @login_required
 def home(request):
-    posts = models.Ticket.objects.all().order_by('-time_created')
-    reviews = models.Review.objects.all().order_by("-review_id")
-    return render(request, "blog/home.html", context={"posts": posts, "reviews": reviews})
+    posts = models.Ticket.objects.all()
+    posts = posts.annotate(content_type=Value('TICKET', CharField()))
+    reviews = models.Review.objects.all()
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    posts_and_reviews = sorted(
+        chain(posts, reviews),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    return render(request, "blog/home.html", context={"flux": posts_and_reviews})
 
 
 @login_required

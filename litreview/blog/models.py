@@ -27,6 +27,12 @@ class Ticket(models.Model):
         super().save(*args, **kwargs)
         self.resize_image()
 
+    def reviewed(self):
+        reviews = models.Review.objects.all()
+        for review in reviews:
+            if self.ticket_id == review.ticket_id:
+                return True
+
 
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
