@@ -43,6 +43,7 @@ def creat_review(request, ticket_id):
         if review_form.is_valid:
             review = review_form.save(commit=False)
             review.ticket = ticket_preview
+            review.ticket.reviewed = True
             review.user = request.user
             review.save()
             return redirect('home')

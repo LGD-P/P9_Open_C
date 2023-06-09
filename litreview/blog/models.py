@@ -16,6 +16,8 @@ class Ticket(models.Model):
     time_created = models.DateTimeField(
         auto_now=True)
 
+    reviewed = models.BooleanField(default=False)
+
     IMAGE_MAX_SIZE = (708, 270)
 
     def resize_image(self):
@@ -26,12 +28,6 @@ class Ticket(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.resize_image()
-
-    def reviewed(self):
-        reviews = models.Review.objects.all()
-        for review in reviews:
-            if self.ticket_id == review.ticket_id:
-                return True
 
 
 class Review(models.Model):
