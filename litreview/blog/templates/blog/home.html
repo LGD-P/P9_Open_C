@@ -5,9 +5,18 @@
 
 {% include 'blog/top-review-buttons.html' %}
 
-{% include 'blog/test.html' %}
 
+{% for post in flux %}
 
+    {% if post.content_type == 'TICKET' %}
+        {% include 'blog/ticket-flux.html' %}
+        
+        {% else %}
+
+        {% include 'blog/review-flux.html' %}
+    {% endif %}
+    
+{% endfor %}
 
 {% endblock content %} 
 
