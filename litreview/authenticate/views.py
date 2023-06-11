@@ -3,7 +3,6 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 
 
-from django.conf import settings
 from . import forms
 
 
@@ -35,8 +34,11 @@ def signup_page(request):
     form = forms.SignupForm()
     if request.method == "POST":
         form = forms.SignupForm(request.POST)
-        if form.is_valid:
-            user = form.save()
-            login_page(request, user)
-        return redirect('home')
+        try:
+            if form.is_valid:
+                form.save()
+                login_page(request)
+            return redirect('home')
+        except ValueError:
+            return render(request, 'authenticate/signup.html', context={'form': form})
     return render(request, 'authenticate/signup.html', context={'form': form})
