@@ -74,7 +74,7 @@ def creat_ticket_and_review(request):
 
 @login_required
 def my_posts(request):
-    logged = request.user
+
     reviews = models.Review.objects.all()
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
     posts = models.Ticket.objects.all()
@@ -84,5 +84,4 @@ def my_posts(request):
         key=lambda post: post.time_created,
         reverse=True
     )
-    return render(request, "blog/posts.html", context={"flux": posts_and_reviews,
-                                                       'user': logged.id})
+    return render(request, "blog/posts.html", context={"flux": posts_and_reviews})

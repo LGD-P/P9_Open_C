@@ -5,7 +5,7 @@
 {% for post in flux %}
     {% if post.content_type == 'TICKET' %}
         <div class='container p-3 my-3 border'>
-            {% if post.user_id == user %}
+            {% if post.user_id == user.id %}
                 {% include 'blog/ticket-flux.html' %}
                 {% include 'blog/buttons-modify-delete.html' %}
         </div>
@@ -14,7 +14,7 @@
         {% else %}
         
         <div class='container p-3 my-3 border'>
-            {% if post.user_id == user %}
+            {% if post.user_id == user.id %}
                 {% include 'blog/review-flux.html' %}
                 {% include 'blog/buttons-modify-delete.html' %}
             {% endif %}
