@@ -1,7 +1,8 @@
 :root {
-  --star-size: 40px;
+  --star-size: 30px;
   --star-color: #ada9a9;
   --star-background: #fc0;
+ 
 }
 
 .Stars {
@@ -16,7 +17,7 @@
 
 .Stars::before {
   content: '★★★★★';
-  letter-spacing: 3px;
+  letter-spacing: 5px;
   background: linear-gradient(
     90deg, 
     var(--star-background) var(--percent), 

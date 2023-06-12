@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for post in flux %}
+
+    {% if post.content_type == 'TICKET' %}
+        {% if post.user_id == user %}
+            {% include 'blog/ticket-flux.html' %}
+            {% include 'blog/modify-delete-button.html' %}
+        {% endif %}
+    {% endif %}
+
+    {% if post.content_type == 'REVIEW' %}
+        {% if post.user_id == user %}
+            
+            {% include 'blog/review-flux.html' %}
+                        {% include 'blog/modify-delete-button.html' %}
+      
+        {% endif %}
+    {% endif %}
+
+{% endfor %}
+
+{% endblock %}

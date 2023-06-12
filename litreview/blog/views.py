@@ -72,3 +72,19 @@ def creat_ticket_and_review(request):
         return redirect("home")
     return render(request, 'blog/create-ticket-and-review.html', context={'ticket_form': ticket_form,
                                                                           'review_form': review_form})
+
+
+@login_required
+def my_posts(request):
+    logged = request.user
+    posts = models.Ticket.objects.all()
+    posts = posts.annotate(content_type=Value('TICKET', CharField()))
+    reviews = models.Review.objects.all()
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    posts_and_reviews = sorted(
+        chain(posts, reviews),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+    return render(request, "blog/my-posts.html", context={"flux": posts_and_reviews,
+                                                          'user': logged.id})

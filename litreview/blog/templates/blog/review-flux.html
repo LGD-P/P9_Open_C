@@ -4,7 +4,7 @@
         <div class="row">  
 
             <div class="col-sm-6">
-                <p>Vous avez publié une critique: </p>
+                <p> {{post.user}} avez publié une critique: </p>
             </div>
             <div class="col-sm-6 " style="text-align:right">
                 <p> {{post.time_created}} </p>
@@ -13,7 +13,7 @@
     </div>
     <h3>
         {{post.headline}} 
-        <div class="Stars" style="--rating: {{post.rating}}"; aria-label="Rating of this product is 2.3 out of 5.">
+        <div class="Stars" style="--rating: {{post.rating}}">
     
     </h3>
     

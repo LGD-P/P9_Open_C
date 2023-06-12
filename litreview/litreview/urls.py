@@ -32,7 +32,8 @@ urlpatterns = [
     path('tickets/<ticket_id>/review/add',
          blog.views.creat_review, name="review-add"),
     path('create-ticket-and-review/', blog.views.creat_ticket_and_review,
-         name="create-ticket-and-review")
+         name="create-ticket-and-review"),
+    path('my-posts/', blog.views.my_posts, name="my-posts")
 ]
 
 
