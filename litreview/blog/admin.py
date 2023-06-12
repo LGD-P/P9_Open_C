@@ -9,7 +9,7 @@ from .models import Ticket, Review
 @admin.register(Ticket)
 class TicketAdmin(admin.ModelAdmin):
     list_display = ['user', 'title', 'time_created']
-    list_filter = ['user', 'title', 'time_created', 'reviewed']
+    list_filter = ['user', 'title', 'time_created']
 
 
 @admin.register(Review)

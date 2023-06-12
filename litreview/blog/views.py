@@ -43,8 +43,6 @@ def creat_review(request, ticket_id):
         if review_form.is_valid:
             review = review_form.save(commit=False)
             review.ticket = ticket_preview
-            ticket_preview.reviewed = True
-            ticket_preview.save(update_fields=["reviewed"])
             review.user = request.user
             review.save()
             return redirect('home')
@@ -77,14 +75,14 @@ def creat_ticket_and_review(request):
 @login_required
 def my_posts(request):
     logged = request.user
-    posts = models.Ticket.objects.all()
-    posts = posts.annotate(content_type=Value('TICKET', CharField()))
     reviews = models.Review.objects.all()
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+    posts = models.Ticket.objects.all()
+    posts = posts.annotate(content_type=Value('TICKET', CharField()))
     posts_and_reviews = sorted(
         chain(posts, reviews),
         key=lambda post: post.time_created,
         reverse=True
     )
-    return render(request, "blog/my-posts.html", context={"flux": posts_and_reviews,
-                                                          'user': logged.id})
+    return render(request, "blog/posts.html", context={"flux": posts_and_reviews,
+                                                       'user': logged.id})

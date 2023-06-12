@@ -1,47 +1,37 @@
 {% load static %}
-<div class='container p-3 my-3 border'>
-    <div class="container-fluid">
-        <div class="row">  
-
-            <div class="col-sm-6">
-                <p> {{post.user}} avez publié une critique: </p>
-            </div>
-            <div class="col-sm-6 " style="text-align:right">
-                <p> {{post.time_created}} </p>
-            </div>
+<div class="container-fluid row">
+        <div class="col-sm-6">
+            <p> {{post.user}} avez publié une critique: </p>
         </div>
-    </div>
-    <h3>
-        {{post.headline}} 
-        <div class="Stars" style="--rating: {{post.rating}}">
-    
-    </h3>
-    
-    
-    <div>
-        {{post.body}}
-    </div>
-    
-    <div class="container-fluid p-3 my-3 border">
-        <div class="row">  
-            <div class="col-sm-6">
-                {% if post.ticket.image %}
-                    <div class='d-flex justify-content-center'>
-                        <img src = '{{post.ticket.image.url}}' >
-                    </div>
-                {% else %}
+        <div class="col-sm-6 " style="text-align:right">
+            <p> {{post.time_created}} </p>
+        </div>
+</div>
+<h3>
+    {{post.headline}} 
+    <div class="Stars" style="--rating: {{post.rating}}">
+</h3>
+
+<div>
+    {{post.body}}
+</div>
+
+<div class="container-fluid p-3 my-3 border row">
+        <div class="col-sm-6">
+            {% if post.ticket.image %}
                 <div class='d-flex justify-content-center'>
-                    <img src = 'media/image/no-photo-icon-free-image.jpg' >
+                    <img src = '{{post.ticket.image.url}}' >
                 </div>
-
-                {% endif %}
-            </div>  
-            <div class="col-sm-6">
-                <div>
-                    {{post.ticket.description}}
-                </div>
+            {% else %}
+            <div class='d-flex justify-content-center'>
+                <img src = 'media/image/no-photo-icon-free-image.jpg' >
             </div>
 
+            {% endif %}
+        </div>  
+        <div class="col-sm-6">
+            <div>
+                {{post.ticket.description}}
+            </div>
         </div>
-    </div>                
 </div>

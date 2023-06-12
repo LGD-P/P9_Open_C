@@ -1,0 +1,7 @@
+{% if not post.review_set.all %}
+<div class="p-1 my-1">
+    <form action= "{% url 'review-add' post.id %} " class="d-flex justify-content-end" >
+        <button class="btn btn-secondary" type="submit" >Créer une critique</button>
+    </form>
+</div>
+{% endif %}

@@ -4,17 +4,20 @@
 
 {% block content %} 
 
-{% include 'blog/top-review-buttons.html' %}
+{% include 'blog/buttons-top-review.html' %}
 
 
 {% for post in flux %}
 
     {% if post.content_type == 'TICKET' %}
-        {% include 'blog/ticket-flux.html' %}
-        
+        <div class='container p-3 my-3 border'>
+            {% include 'blog/ticket-flux.html' %}
+            {% include "blog/button-creat-review.html" %}
+        </div>
         {% else %}
-
-        {% include 'blog/review-flux.html' %}
+        <div class='container p-3 my-3 border'>
+            {% include 'blog/review-flux.html' %}
+        </div>
     {% endif %}
     
 {% endfor %}

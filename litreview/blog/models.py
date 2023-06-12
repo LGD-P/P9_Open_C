@@ -16,8 +16,6 @@ class Ticket(models.Model):
     time_created = models.DateTimeField(
         auto_now=True)
 
-    reviewed = models.BooleanField(default=False)
-
     IMAGE_MAX_SIZE = (708, 270)
 
     def resize_image(self):

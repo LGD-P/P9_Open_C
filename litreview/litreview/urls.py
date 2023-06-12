@@ -28,12 +28,12 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', blog.views.home, name='home'),
     path("signup/", authenticate.views.signup_page, name="signup"),
-    path('creat-ticket/', blog.views.creat_ticket, name='creat-ticket'),
+    path('tickets/add/', blog.views.creat_ticket, name='creat-ticket'),
     path('tickets/<ticket_id>/review/add',
          blog.views.creat_review, name="review-add"),
-    path('create-ticket-and-review/', blog.views.creat_ticket_and_review,
+    path('tickets/review/add/', blog.views.creat_ticket_and_review,
          name="create-ticket-and-review"),
-    path('my-posts/', blog.views.my_posts, name="my-posts")
+    path('posts/', blog.views.my_posts, name="posts")
 ]
 
 

@@ -1,49 +1,30 @@
-<div class='container p-3 my-3 border'>
-    <div class="container-fluid">
-        <div class="row">  
-
-            <div class="col-sm-6">
-                <p>Ticket - {{post.user}}</p>
-            </div>
-            <div class="col-sm-6 " style="text-align:right">
-                <p> {{post.time_created}} </p>
-            </div>
+<div class="container-fluid row">
+        <div class="col-sm-6">
+            <p>Ticket - {{post.user}}</p>
         </div>
-    </div>
-    <h3>
-        {{post.title}}
-    </h3>
-
-    <div class="container-fluid p-3 my-3">
-        <div class="row">  
-            <div class="col-sm-6">
-                {% if post.image %}
-                    <div class='d-flex justify-content-center'>
-                        <img src = '{{post.image.url}}' >
-                    </div>
-                {% else %}
-                <div class='d-flex justify-content-center'>
-                    <img src = 'media/image/no-photo-icon-free-image.jpg' >
-                </div>
-
-                {% endif %}
-            </div>  
-            <div class="col-sm-6">
-                <div>
-                    {{post.description}}
-                    
-                </div>
-            </div>
-
+        <div class="col-sm-6 " style="text-align:right">
+            <p> {{post.time_created}} </p>
         </div>
-    </div>   
-    
-    {% if post.reviewed == False  %}
-
-    <div class="p-1 my-1">
-        <form action= "{% url 'review-add' post.id %} " class="d-flex justify-content-end" >
-            <button class="btn btn-secondary" type="submit" >Créer une critique</button>
-        </form>
-    </div>
-    {% endif %}
 </div>
+<h3>
+    {{post.title}}
+</h3>
+
+<div class="container-fluid p-3 my-3 row">
+    <div class="col-sm-6">
+        {% if post.image %}
+            <div class='d-flex justify-content-center'>
+                <img src = '{{post.image.url}}' >
+            </div>
+        {% else %}
+            <div class='d-flex justify-content-center'>
+                <img src = 'media/image/no-photo-icon-free-image.jpg' >
+            </div>
+        {% endif %}
+    </div>  
+    <div class="col-sm-6">
+        <div>
+            {{post.description}} 
+        </div>
+    </div> 
+</div>   
