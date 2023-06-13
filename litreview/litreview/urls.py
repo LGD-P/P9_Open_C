@@ -33,7 +33,9 @@ urlpatterns = [
          blog.views.creat_review, name="review-add"),
     path('tickets/review/add/', blog.views.creat_ticket_and_review,
          name="create-ticket-and-review"),
-    path('posts/', blog.views.my_posts, name="posts")
+    path('posts/', blog.views.my_posts, name="posts"),
+    path('deleted/<ticket_id>/',
+         blog.views.delete_ticket, name='delete')
 ]
 
 

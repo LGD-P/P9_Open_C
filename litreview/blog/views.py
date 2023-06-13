@@ -31,15 +31,15 @@ def creat_ticket(request):
             ticket.user = request.user
             ticket.save()
         return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'blog/creat-ticket.html', context={'ticket_form': ticket_form})
+    return render(request, 'blog/posts.html', context={'ticket_form': ticket_form})
 
 
-def delete_ticket(request, id):
-    ticket = models.Ticket.objects.get(id=id)
+def delete_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
     if request.method == "POST":
         ticket.delete()
         return redirect("home")
-    return render(request, )
+    return render(request, 'blog/buttons-modify-delete.html', context={"ticket": ticket})
 
 
 @login_required
