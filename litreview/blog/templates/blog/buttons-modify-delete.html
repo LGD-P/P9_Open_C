@@ -1,3 +1,6 @@
+{% load static %}
+
+
 <div class="container">
     <div class="row">       
         <div class="p-3 me-5 d-flex justify-content-end ">
@@ -6,11 +9,25 @@
                 <button class="btn btn-secondary m-2" type="submit" >Modifier</button>
             </form>
             
-            <form action= " " class=" "  >
-                <button class="btn btn-secondary m-2 " type="submit" >Supprimer</button>
-            </form>            
+            <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-secondary m-2"  >Supprimer</button>
+            
         </div>
     </div>
 </div>
 
 
+
+<div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container-modal">
+      <h1>Attention</h1>
+      <p>Êtes-vous sûr de vouloir supprimer ?</p>
+
+      <div class="clearfix">
+        <button onclick="document.getElementById('id01').style.display='none'" type="button" class="cancelbtn modalbtn">Annuler</button>
+        <button class="deletebtn modalbtn" type="submit">Supprimer</button>
+      </div>
+    </div>
+  </form>
+</div> 
