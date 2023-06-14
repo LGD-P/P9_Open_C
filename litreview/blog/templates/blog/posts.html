@@ -4,22 +4,28 @@
 
 {% for post in flux %}
     {% if post.content_type == 'TICKET' %}
-        <div class='container p-3 my-3 border'>
+        
             {% if post.user_id == user.id %}
+            <div class='container p-3 my-3 border'>
                 {% include 'blog/ticket-flux.html' %}
                 {% include 'blog/buttons-modify-delete.html' %}
-        </div>
+            </div>
             {% endif %}
         
-        {% else %}
-        
-        <div class='container p-3 my-3 border'>
+    {% else %}        
             {% if post.user_id == user.id %}
+            <div class='container p-3 my-3 border'>
                 {% include 'blog/review-flux.html' %}
                 {% include 'blog/buttons-modify-delete.html' %}
+            </div>   
             {% endif %}
-        </div>  
     {% endif %}
-    
 {% endfor %}
+
+{% if flux == null %}
+<div class='container p-3 my-3 border'>
+    <h2 class='d-flex justify-content-center'> Vous n'avez aucun posts</h2>
+</div>
+{% endif %} 
+
 {% endblock %}

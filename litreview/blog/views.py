@@ -31,7 +31,7 @@ def creat_ticket(request):
             ticket.user = request.user
             ticket.save()
         return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'blog/posts.html', context={'ticket_form': ticket_form})
+    return render(request, 'blog/creat-ticket.html', context={'ticket_form': ticket_form})
 
 
 def delete_ticket(request, ticket_id):
