@@ -34,8 +34,10 @@ urlpatterns = [
     path('tickets/review/add/', blog.views.creat_ticket_and_review,
          name="create-ticket-and-review"),
     path('posts/', blog.views.my_posts, name="posts"),
-    path('deleted/<ticket_id>/',
-         blog.views.delete_ticket, name='delete')
+    path('deleted/ticket/<ticket_id>/',
+         blog.views.delete_ticket, name='delete-ticket'),
+    path('deleted/review/<review_id>/',
+         blog.views.delete_review, name='delete-review'),
 ]
 
 

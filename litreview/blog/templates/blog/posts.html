@@ -6,13 +6,13 @@
     {% if post.content_type == 'TICKET' %}
         
             {% if post.user_id == user.id %}
-            <div id="id12"  class='container p-3 my-3 border'>
+            <div class='container p-3 my-3 border'>
                 {% include 'blog/ticket-flux.html' %}
                 {% include 'blog/buttons-modify-delete.html' %}
             </div>
             {% endif %}
         
-    {% else %}        
+    {% elif post.content_type == 'REVIEW' %}        
             {% if post.user_id == user.id %}
             <div class='container p-3 my-3 border'>
                 {% include 'blog/review-flux.html' %}
@@ -22,7 +22,7 @@
     {% endif %}
 {% endfor %}
 
-{% if flux == null %}
+{% if not flux %}
 <div class='container p-3 my-3 border'>
     <h2 class='d-flex justify-content-center'> Vous n'avez aucun posts</h2>
 </div>
