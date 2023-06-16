@@ -1,0 +1,18 @@
+
+<div id="{{post.id}}" class="modal">
+    <span onclick="document.getElementById('{{post.id}}').style.display='none'" class="close"  title="Close Modal">&times;</span>
+    <form action="{% url 'delete' post.id %}" method="post" class="modal-content">
+        {% csrf_token %}
+        <div class="container-modal">
+            <h1>Attention</h1>
+            <p>Êtes-vous sûr de vouloir supprimer :</p>
+            <p> ==> {{post.title}} ?</p>
+
+            <div class="clearfix">
+                <button onclick="document.getElementById('{{post.id}}').style.display='none'" type="button" class="cancelbtn modalbtn">Annuler</button>
+                <button class="deletebtn modalbtn" type="submit">Supprimer</button>
+
+            </div>
+        </div>
+    </form>
+</div>

@@ -34,9 +34,10 @@ def creat_ticket(request):
     return render(request, 'blog/creat-ticket.html', context={'ticket_form': ticket_form})
 
 
+@login_required
 def delete_ticket(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
     if request.method == "POST":
+        ticket = get_object_or_404(models.Ticket, id=ticket_id)
         ticket.delete()
         return redirect("home")
     return render(request, 'blog/buttons-modify-delete.html', context={"ticket": ticket})
@@ -46,8 +47,8 @@ def delete_ticket(request, ticket_id):
 def creat_review(request, ticket_id):
     ticket_preview = get_object_or_404(models.Ticket, id=ticket_id)
     review_form = forms.ReviewForms()
+    review_form = forms.ReviewForms(request.POST)
     if request.method == "POST":
-        review_form = forms.ReviewForms(request.POST)
         if review_form.is_valid:
             review = review_form.save(commit=False)
             review.ticket = ticket_preview
