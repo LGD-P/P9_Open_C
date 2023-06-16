@@ -47,8 +47,8 @@ def delete_ticket(request, ticket_id):
 def creat_review(request, ticket_id):
     ticket_preview = get_object_or_404(models.Ticket, id=ticket_id)
     review_form = forms.ReviewForms()
-    review_form = forms.ReviewForms(request.POST)
     if request.method == "POST":
+        review_form = forms.ReviewForms(request.POST)
         if review_form.is_valid:
             review = review_form.save(commit=False)
             review.ticket = ticket_preview

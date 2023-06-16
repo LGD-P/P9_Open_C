@@ -1,5 +1,6 @@
 /* STARS SYSTEM */
 
+/* Root paremeter to apply to stars */ 
 :root {
   --star-size: 30px;
   --star-color: #ada9a9;
@@ -7,6 +8,7 @@
  
 }
 
+/* calculation % for 5 stars to display */ 
 .Stars {
   --percent: calc(var(--rating) / 5 * 100%);
   
@@ -17,6 +19,7 @@
 
 }
 
+/* Pretty display and apply webkit for chrome / safari */ 
 .Stars::before {
   content: '★★★★★';
   letter-spacing: 5px;
