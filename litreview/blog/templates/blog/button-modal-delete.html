@@ -2,21 +2,30 @@
     <span onclick="document.getElementById('{{post.id}}').style.display='none'" class="close"  title="Close Modal">&times;</span>
     {% if post.content_type == 'TICKET' %}
         <form action="{% url 'delete-ticket' post.id %}" method="post" class="modal-content">
-    
-    {% elif post.content_type == 'REVIEW' %}
-        <form action="{% url 'delete-review' post.id %}" method="post" class="modal-content">
-    {% endif %}
-    
         {% csrf_token %}
         <div class="container-modal">
             <h1>Attention</h1>
-            <p>Êtes-vous sûr de vouloir supprimer :</p>
+            <p>Êtes-vous sûr de vouloir supprimer votre publication de :</p>
             <p>==> {{post.title}} ? </p>
     
             <div class="clearfix">
                 <button onclick="document.getElementById('{{post.id}}').style.display='none'" type="button" class="cancelbtn modalbtn">Annuler</button>
                 <button class="deletebtn modalbtn" type="submit">Supprimer</button>
             </div>
+     {% elif post.content_type == 'REVIEW' %}
+            <form action="{% url 'delete-review' post.id %}" method="post" class="modal-content">
+            {% csrf_token %}
+            <div class="container-modal">
+                <h1>Attention</h1>
+                <p>Êtes-vous sûr de vouloir supprimer votre critique de :</p>
+                <p>==> {{post.ticket.title}} ? </p>
+        
+                <div class="clearfix">
+                    <button onclick="document.getElementById('{{post.id}}').style.display='none'" type="button" class="cancelbtn modalbtn">Annuler</button>
+                    <button class="deletebtn modalbtn" type="submit">Supprimer</button>
+                </div>
+    {% endif %}
+        
         </div>
     </form>
 </div>
