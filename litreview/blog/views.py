@@ -91,6 +91,26 @@ def creat_ticket_and_review(request):
 
 
 @login_required
+def modify_ticket(request, ticket_id):
+    ticket = get_object_or_404(models.Ticket, id=ticket_id)
+    ticket_form = forms.TicketForms(instance=ticket)
+    if request.method == "POST":
+        ticket_form = forms.TicketForms(
+            request.POST, request.FILES, request.user, instance=ticket)
+
+        if ticket_form.is_valid:
+            ticket_form.save(commit=False)
+            if not ticket.image:
+                ticket.image = "image/no-image.jpg"
+            ticket_form.save()
+
+        return redirect("posts")
+
+    return render(request, 'blog/modify-tickets-review.html', context={"ticket_form": ticket_form,
+                                                                       })
+
+
+@login_required
 def my_posts(request):
 
     reviews = models.Review.objects.all()
