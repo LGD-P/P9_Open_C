@@ -2,9 +2,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.db.models import Value, CharField, DateTimeField
+from django.db.models import Value, CharField
 from itertools import chain
 from . import forms, models
+from datetime import datetime
 
 
 @login_required
@@ -123,6 +124,7 @@ def modify_review(request, review_id):
         if review_form.is_valid:
             review_form.ticket = ticket_preview.id
             review_form.user = request.user
+            review_form.time_created = datetime.now()
             review_form.save()
 
         return redirect("posts")
