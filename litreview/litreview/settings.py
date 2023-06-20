@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "crispy_forms",
+    "debug_toolbar",
     "crispy_bootstrap5",
     'authenticate',
     'blog',
@@ -57,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'litreview.urls'
@@ -143,3 +145,9 @@ LOGOUT_REDIRECT_URL = LOGIN_URL
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = BASE_DIR.joinpath("media/")
+
+INTERNAL_IPS = [
+
+    "127.0.0.1",
+
+]

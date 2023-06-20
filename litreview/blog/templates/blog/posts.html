@@ -8,7 +8,7 @@
             {% if post.user_id == user.id %}
             <div class='container p-3 my-3 border'>
                 {% include 'blog/ticket-flux.html' %}
-                {% include 'blog/buttons-modify-delete.html' %}
+                {% include 'blog/button-modify-ticket.html' %}
             </div>
             {% endif %}
         
@@ -16,7 +16,7 @@
             {% if post.user_id == user.id %}
             <div class='container p-3 my-3 border'>
                 {% include 'blog/review-flux.html' %}
-                {% include 'blog/buttons-modify-delete.html' %}
+                {% include 'blog/button-modify-review.html' %}
             </div>   
             {% endif %}
     {% endif %}

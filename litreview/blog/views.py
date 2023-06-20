@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.db.models import Value, CharField
+from django.db.models import Value, CharField, DateTimeField
 from itertools import chain
 from . import forms, models
 
@@ -106,20 +106,43 @@ def modify_ticket(request, ticket_id):
 
         return redirect("posts")
 
-    return render(request, 'blog/modify-tickets-review.html', context={"ticket_form": ticket_form,
-                                                                       })
+    return render(request, 'blog/modify-tickets.html', context={"ticket_form": ticket_form,
+                                                                })
+
+
+@login_required
+def modify_review(request, review_id):
+    review = get_object_or_404(models.Review, id=review_id)
+    review_form = forms.ReviewForms(instance=review)
+    ticket_preview = models.Ticket.objects.get(pk=review.ticket_id)
+
+    if request.method == "POST":
+        review_form = forms.ReviewForms(
+            request.POST, request.user, instance=review)
+
+        if review_form.is_valid:
+            review_form.ticket = ticket_preview.id
+            review_form.user = request.user
+            review_form.save()
+
+        return redirect("posts")
+
+    return render(request, 'blog/modify-review.html', context={"review_form": review_form,
+                                                               "ticket_preview": ticket_preview,
+                                                               })
 
 
 @login_required
 def my_posts(request):
 
-    reviews = models.Review.objects.all()
+    reviews = models.Review.objects.filter(user_id=request.user.id)
     reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    posts = models.Ticket.objects.all()
+    posts = models.Ticket.objects.filter(user_id=request.user.id)
     posts = posts.annotate(content_type=Value('TICKET', CharField()))
     posts_and_reviews = sorted(
         chain(posts, reviews),
         key=lambda post: post.time_created,
         reverse=True
     )
+
     return render(request, "blog/posts.html", context={"flux": posts_and_reviews})

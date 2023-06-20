@@ -1,0 +1,19 @@
+{% load crispy_forms_tags %}
+<form method='post' enctype="multipart/form-data"> 
+    {% csrf_token %}
+
+    <div class="p-2">         
+        {{ review_form.headline|as_crispy_field }}
+    </div>            
+
+    {% include 'blog/radio-rating.html' %} 
+    
+    
+    <div class="p-2">
+        {{review_form.body|as_crispy_field}}
+    </div>            
+
+    <div class="d-md-flex justify-content-md-end">
+        <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
+    </div>
+</form>

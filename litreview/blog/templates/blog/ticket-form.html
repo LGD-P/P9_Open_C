@@ -1,0 +1,9 @@
+{% load crispy_forms_tags %}
+
+<form method='post' class="creat-article" enctype="multipart/form-data"> 
+    {% csrf_token %}
+    {{ ticket_form|crispy }}
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
+    </div>
+</form>

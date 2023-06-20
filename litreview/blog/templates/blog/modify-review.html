@@ -1,19 +1,11 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
-
 
 
 
 {% block content %}
 <div class='container-fluid p-5 my-5 border'>
     {% include 'blog/display-ticket-in-review-form.html' %}
-    <h2>Critique</h2>
-    
-   {% include 'blog/review-form.html' %}
-    
+    <h3 class="text-center p-3 my-3">Modifier la review</h3>
+    {% include 'blog/review-form.html' %}
 </div>
-{% endblock content %}
-
-
-
-
+{% endblock content%}

@@ -1,9 +1,10 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
 {% block content %}
 <div class="container-fluid p-5">
     <h3 class="text-center p-3 my-3">Créer un ticket</h3>
+    
     <form method='post' class="creat-article" enctype="multipart/form-data"> 
         {% csrf_token %}
         {{ ticket_form|crispy }}
@@ -11,6 +12,7 @@
             <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
         </div>
     </form>
+    
 </div>
 {% endblock content%}
 
