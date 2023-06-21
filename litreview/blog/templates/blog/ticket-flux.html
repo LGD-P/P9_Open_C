@@ -14,11 +14,11 @@
     <div class="col-sm-6">
         {% if post.image %}
             <div class='d-flex justify-content-center'>
-                <img src = '{{post.image.url}}' >
+                <img src = '{{post.image.url}}' width="190" height="270" >
             </div>
-        {% else %}
+        {% elif not post.image %}
             <div class='d-flex justify-content-center'>
-                <img src = 'media/image/no-image.jpg' >
+                <img src = '/media/image/no-image.jpg' width="190" height="270" >
             </div>
         {% endif %}
     </div>  

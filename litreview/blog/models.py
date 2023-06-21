@@ -11,10 +11,9 @@ class Ticket(models.Model):
     description = models.TextField(max_length=2048, blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, blank=True)
-    image = models.ImageField(null=True, blank=True, upload_to="image/",
-                              default="image/no-image.jpg")
+    image = models.ImageField(null=True, blank=True, upload_to="image/")
     time_created = models.DateTimeField(
-        auto_now=True)
+        auto_now_add=True)
 
     IMAGE_MAX_SIZE = (708, 270)
 
@@ -25,7 +24,8 @@ class Ticket(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.resize_image()
+        if self.image:
+            self.resize_image()
 
 
 class Review(models.Model):
@@ -39,12 +39,14 @@ class Review(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
 
 
-"""
 class UserFollows(models.Model):
     # Your UserFollows model definition goes here
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE, related_name='user')
+    followed_user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                                      on_delete=models.CASCADE, related_name='followed_user')
 
     class Meta:
         # ensures we don't get multiple UserFollows instances
         # for unique user-user_followed pairs
         unique_together = ('user', 'followed_user', )
-"""

@@ -1,5 +1,6 @@
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.db.models import Value, CharField
@@ -40,7 +41,7 @@ def delete_ticket(request, ticket_id):
     if request.method == "POST":
         ticket = get_object_or_404(models.Ticket, id=ticket_id)
         ticket.delete()
-        return redirect("home")
+        return redirect("posts")
     return render(request, 'blog/button-modal-delete-ticket', context={"ticket": ticket})
 
 
@@ -67,7 +68,7 @@ def delete_review(request, review_id):
     if request.method == "POST":
         review = get_object_or_404(models.Review, id=review_id)
         review.delete()
-        return redirect("home")
+        return redirect("posts")
     return render(request, 'blog/button-modal-delete-review.html', context={"review": review})
 
 
@@ -148,3 +149,10 @@ def my_posts(request):
     )
 
     return render(request, "blog/posts.html", context={"flux": posts_and_reviews})
+
+
+def subscription(request):
+    user = get_user_model()
+    users_list = [user.objects.all()]
+
+    return render(request, "blog/subscription.html", context={'users': users_list})

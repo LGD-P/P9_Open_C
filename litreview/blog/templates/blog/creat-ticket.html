@@ -5,13 +5,7 @@
 <div class="container-fluid p-5">
     <h3 class="text-center p-3 my-3">Créer un ticket</h3>
     
-    <form method='post' class="creat-article" enctype="multipart/form-data"> 
-        {% csrf_token %}
-        {{ ticket_form|crispy }}
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <button class="btn btn-secondary" type='submit' value="signup">Envoyer</button>
-        </div>
-    </form>
+    {% include 'blog/ticket-form.html' %}
     
 </div>
 {% endblock content%}

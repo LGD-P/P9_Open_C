@@ -42,6 +42,7 @@ urlpatterns = [
          blog.views.delete_ticket, name='delete-ticket'),
     path('deleted/review/<review_id>/',
          blog.views.delete_review, name='delete-review'),
+    path('subscribe', blog.views.subscription, name='subscribe')
 
 ]
 
