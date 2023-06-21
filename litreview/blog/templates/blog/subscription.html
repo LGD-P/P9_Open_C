@@ -6,13 +6,20 @@
 <div class="container-fluid p-5">
     <h3 class="text-center p-3 my-3">Suivre d'autres utilisateurs</h3>
     
-    <form method='POST'>
+    <form method='POST' action = {% url 'subscribe' %}>
         {% csrf_token %}
         <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2">
+            <input name="search" type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
             <button type= 'submit' class="btn btn-outline-secondary"  id="button-addon2">Envoyer</button>
         </div>
     </form>
+    {% if search %}
+    {% for username in exist  %}
+    <p> utilisateur pouvant correspondre : {{username}}<p/>
+    {% endfor %}
+    {% else %}
+    <p>Aucun utilisateur ne correspond à la recherche </p>
+    {% endif %}
     
     <h3 class="text-center p-3 my-3">Abonnements</h3>
     <div class="input-group mb-3">
