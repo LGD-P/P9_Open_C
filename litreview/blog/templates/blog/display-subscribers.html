@@ -1,0 +1,13 @@
+<h3 class="text-center p-3 my-3">Abonnements</h3>
+{% for usr  in following%}
+    <div class="mb-3">
+        <p>{{usr.followed_user}}</p>
+    </div>
+{% endfor %}
+
+<h3 class="text-center p-3 my-3">Abonnés</h3>
+{% for username in followed_by %}
+    <div class="mb-3">
+        <p>{{username}}</p>
+    </div>
+{% endfor %}

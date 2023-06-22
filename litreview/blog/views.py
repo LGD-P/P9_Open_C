@@ -152,9 +152,18 @@ def my_posts(request):
 
 
 def subscription(request):
-    user = get_user_model()
+    if request.method == 'GET':
+        following = models.UserFollows.objects.filter(
+            user=request.user.id)
+        followed_by = models.UserFollows.objects.filter(
+            followed_user=request.user.id)
+        return render(request, "blog/subscription.html", context={'following': following, 'followed_by': followed_by})
+
+
+def search_user(request):
+    User = get_user_model()
     if request.method == 'POST':
         search = request.POST['search']
-        exist = user.objects.filter(username__contains=search).all
+        exist = User.objects.all
         return render(request, "blog/subscription.html", context={'exist': exist, 'search': search})
     return render(request, "blog/subscription.html", )
