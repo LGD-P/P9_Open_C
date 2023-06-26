@@ -151,15 +151,28 @@ def my_posts(request):
     return render(request, "blog/posts.html", context={"flux": posts_and_reviews})
 
 
-def subscription(request):
+@login_required
+def subscription_main_page(request):
     User = get_user_model()
-    if request.method == 'GET':
-        exist = User.objects.all
-        following = models.UserFollows.objects.filter(
-            user=request.user.id)
-        followed_by = models.UserFollows.objects.filter(
-            followed_user=request.user.id)
-        return render(request, "blog/subscription-page.html",
-                      context={'following': following,
-                               'followed_by': followed_by,
-                               'exist': exist, })
+
+    exist = User.objects.exclude(pk=request.user.id)
+
+    following_user = models.UserFollows.objects.filter(
+        user=request.user)
+    followed_by_user = models.UserFollows.objects.filter(
+        followed_user=request.user)
+
+    return render(request, "blog/subscription-page.html",
+                  context={'following_user': following_user,
+                           'followed_by_user': followed_by_user,
+                           'exist': exist})
+
+
+@login_required
+def unsubscribe(request, id):
+    if request.method == 'POST':
+        userfollows = get_object_or_404(models.UserFollows, id=id)
+        userfollows.delete()
+        print('suppression effectuée')
+        return redirect('subscribe')
+    return render(request, "blog/unsubscribe.html")

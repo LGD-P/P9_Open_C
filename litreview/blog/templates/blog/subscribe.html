@@ -1,19 +1,23 @@
 
-<form method='GET' >
+
+<form method='POST'  >
     <div class="row">
         <div class="col-lg-10 ">
-        {% csrf_token %}
             <div class="input-group">
+                
                 <input name="search" list='exist' type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
-                    <datalist id = 'exist' >
-                        {% for usr in exist %}
-                        <option value='{{usr}}'> </option>
-                        {% endfor %}
-                    <datalist>                    
+                <datalist id = 'exist' >
+                    {% for usr in exist %}
+                    <option value='{{usr}}'> </option>
+                    {% endfor %}
+                <datalist>                    
             </div>
         </div>
-        <div class="col-lg-2">
-            <button action = "{% url 'subscribe' %}" type= 'submit' class="btn btn-outline-secondary"  id="button-addon2">Envoyer</button> 
+        <div class="col-lg-2" >
+            
+            <button   type= 'submit' class="btn btn-outline-secondary"  id="button-addon2">Envoyer</button> 
+            {% csrf_token %}
+            
         </div>
     </div>
 </form>

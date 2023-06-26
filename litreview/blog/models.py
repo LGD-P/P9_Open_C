@@ -49,8 +49,10 @@ class UserFollows(models.Model):
 
     def __str__(self) -> str:
         User = get_user_model()
-        username = User.objects.get(id=self.user.id).username
-        return username
+        user_username = User.objects.get(id=self.user.id).username
+        followed_user_username = User.objects.get(
+            id=self.followed_user.id).username
+        return f"User = {user_username}, Followed_user = {followed_user_username}"
 
     class Meta:
         # ensures we don't get multiple UserFollows instances
