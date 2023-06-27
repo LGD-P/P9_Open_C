@@ -1,11 +1,11 @@
 
 
-<form method='POST'  >
+<form method='POST'  action= "{% url 'subscribe-to'%}">
     <div class="row">
         <div class="col-lg-10 ">
             <div class="input-group">
                 
-                <input name="search" list='exist' type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
+                <input name="to_follow" list='exist' type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
                 <datalist id = 'exist' >
                     {% for usr in exist %}
                     <option value='{{usr}}'> </option>
@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-2" >
             
-            <button   type= 'submit' class="btn btn-outline-secondary"  id="button-addon2">Envoyer</button> 
+            <button  type= 'submit' class="btn btn-outline-secondary"  id="button-addon2">Envoyer</button> 
             {% csrf_token %}
             
         </div>

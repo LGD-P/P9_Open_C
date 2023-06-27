@@ -43,9 +43,11 @@ urlpatterns = [
     path('deleted/review/<review_id>/',
          blog.views.delete_review, name='delete-review'),
     path('subscribe-page/',
-         blog.views.subscription_main_page, name='subscribe'),
+         blog.views.subscription_main_page, name='main-subscribe-page'),
     path('subscribe-page/unfollow/userfollow/<int:id>/',
          blog.views.unsubscribe, name='unsubscribe'),
+    path('subscribe-page/subscribe/to/',
+         blog.views.subscribe, name='subscribe-to'),
 
 
 ]

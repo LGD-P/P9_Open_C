@@ -6,6 +6,7 @@ from django.conf import settings
 from django.db.models import Value, CharField
 from itertools import chain
 from . import forms, models
+from authenticate.models import User
 from datetime import datetime
 
 
@@ -174,5 +175,14 @@ def unsubscribe(request, id):
         userfollows = get_object_or_404(models.UserFollows, id=id)
         userfollows.delete()
         print('suppression effectuée')
-        return redirect('subscribe')
-    return render(request, "blog/unsubscribe.html")
+        return redirect('main-subscribe-page')
+
+
+@login_required
+def subscribe(request):
+    if request.method == 'POST':
+        user = request.user
+        user_followed = User.objects.get(username=request.POST["to_follow"])
+        new_pair = models.UserFollows(user=user, followed_user=user_followed)
+        new_pair.save()
+        return redirect('main-subscribe-page')
