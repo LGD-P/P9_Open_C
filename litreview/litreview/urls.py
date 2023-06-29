@@ -24,7 +24,7 @@ import authenticate.views
 
 urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
-    path('vz/58/agc/68/ztr/75hts', admin.site.urls),
+    path('vz/58/agc/68/ztr/75hts/', admin.site.urls),
     path('', authenticate.views.login_page, name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('home/', blog.views.home, name='home'),

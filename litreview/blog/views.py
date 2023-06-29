@@ -166,7 +166,7 @@ def subscription_main_page(request):
     return render(request, "blog/subscription-page.html",
                   context={'following_user': following_user,
                            'followed_by_user': followed_by_user,
-                           'exist': exist})
+                           'exist': exist, })
 
 
 @login_required
@@ -183,6 +183,13 @@ def subscribe(request):
     if request.method == 'POST':
         user = request.user
         user_followed = User.objects.get(username=request.POST["to_follow"])
-        new_pair = models.UserFollows(user=user, followed_user=user_followed)
-        new_pair.save()
-        return redirect('main-subscribe-page')
+        if models.UserFollows.objects.filter(user=user, followed_user=user_followed).exists():
+            message = "Vous êtes déjà abonné à cette personne"
+            return redirect('main-subscribe-page')
+        else:
+            new_pair = models.UserFollows(
+                user=user, followed_user=user_followed)
+            new_pair.save()
+            return redirect('main-subscribe-page')
+    return render(request, "blog/subscription-page.html",
+                  context={'message': message})

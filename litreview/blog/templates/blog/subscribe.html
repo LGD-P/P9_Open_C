@@ -5,7 +5,7 @@
         <div class="col-lg-10 ">
             <div class="input-group">
                 
-                <input name="to_follow" list='exist' type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
+                <input required name="to_follow" list='exist' type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
                 <datalist id = 'exist' >
                     {% for usr in exist %}
                     <option value='{{usr}}'> </option>
@@ -21,4 +21,6 @@
         </div>
     </div>
 </form>
+
+
 
