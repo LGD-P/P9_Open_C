@@ -12,23 +12,35 @@ from datetime import datetime
 
 @login_required
 def home(request):
-    try:
 
-        pair = models.UserFollows.objects.get(user=request.user)
+    pair = models.UserFollows.objects.all().exclude(
+        followed_user=request.user)
 
-        posts = models.Ticket.objects.filter(user=pair.followed_user)
+    if len(pair) > 0:
+        followed_users = [p.followed_user for p in pair]
+
+        posts = models.Ticket.objects.filter(
+            user__in=followed_users)
+
         posts = posts.annotate(content_type=Value('TICKET', CharField()))
-        reviews = models.Review.objects.filter(user=pair.followed_user)
+
+        reviews = models.Review.objects.filter(
+            user__in=followed_users)
+
         reviews = reviews.annotate(
             content_type=Value('REVIEW', CharField()))
+
         posts_and_reviews = sorted(
             chain(posts, reviews),
             key=lambda post: post.time_created,
             reverse=True
         )
-        return render(request, "blog/home.html", context={"flux": posts_and_reviews, 'pair': pair, })
+        if len(posts_and_reviews) == 0:
+            message = "Pas de post pour l'instant"
 
-    except Exception as subscribe_an_account:
+        return render(request, "blog/home.html", context={"flux": posts_and_reviews, 'pair': pair, "message": message})
+
+    else:
         subscribe_an_account = "Suivez quelqu'un pour obtenir du contenu dans votre flux"
         return render(request, "blog/home.html", context={"subscribe_an_account": subscribe_an_account})
 

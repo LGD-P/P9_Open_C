@@ -4,23 +4,19 @@
 
 {% block content %} 
 
-<div>
-{{followed}}
-{{pair_test}}
-
-</div>
-
 {% include 'blog/buttons-top-review.html' %}
 
-{% if not flux and not subscribe_an_account %}
-<div class='container p-3 my-3 border'>
-    <p class= 'text-center'> {{pair.followed_user}} n'a pas encore de post</p>
-</div>
 
-{% endif %}
+<div>
+    {% if message %}
+        <p class='text-center'>{{message}}</p>
+    {% endif %}
+</div>
 
 
 {% for post in flux %}
+
+
 
     {% if post.content_type == 'TICKET' %}
         <div class='container p-3 my-3 border'>
@@ -45,6 +41,7 @@
 
 
 {% endblock content %} 
+
 
 
 
