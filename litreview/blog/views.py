@@ -12,16 +12,25 @@ from datetime import datetime
 
 @login_required
 def home(request):
-    posts = models.Ticket.objects.all()
-    posts = posts.annotate(content_type=Value('TICKET', CharField()))
-    reviews = models.Review.objects.all()
-    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
-    posts_and_reviews = sorted(
-        chain(posts, reviews),
-        key=lambda post: post.time_created,
-        reverse=True
-    )
-    return render(request, "blog/home.html", context={"flux": posts_and_reviews})
+    try:
+
+        pair = models.UserFollows.objects.get(user=request.user)
+
+        posts = models.Ticket.objects.filter(user=pair.followed_user)
+        posts = posts.annotate(content_type=Value('TICKET', CharField()))
+        reviews = models.Review.objects.filter(user=pair.followed_user)
+        reviews = reviews.annotate(
+            content_type=Value('REVIEW', CharField()))
+        posts_and_reviews = sorted(
+            chain(posts, reviews),
+            key=lambda post: post.time_created,
+            reverse=True
+        )
+        return render(request, "blog/home.html", context={"flux": posts_and_reviews, 'pair': pair, })
+
+    except Exception as subscribe_an_account:
+        subscribe_an_account = "Suivez quelqu'un pour obtenir du contenu dans votre flux"
+        return render(request, "blog/home.html", context={"subscribe_an_account": subscribe_an_account})
 
 
 @login_required
