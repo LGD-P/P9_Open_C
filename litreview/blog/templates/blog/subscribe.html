@@ -1,13 +1,14 @@
 
 
-<form method='POST'  action= "{% url 'subscribe-to'%}">
+<form method='POST'  action= "{% url 'main-subscribe-page'%}">
     <div class="row">
         <div class="col-lg-10 ">
             <div class="input-group">
                 
                 <input required name="to_follow" list='exist' type="text" class="form-control" placeholder="Recherche d'un utilisateur par nom" aria-describedby="button-addon2" >
-                <datalist id = 'exist' >
-                    {% for usr in exist %}
+                <datalist id = 'exist' 
+                >
+                    {% for usr in exist%}
                     <option value='{{usr}}'> </option>
                     {% endfor %}
                 <datalist>                    
