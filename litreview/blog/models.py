@@ -19,11 +19,17 @@ class Ticket(models.Model):
     IMAGE_MAX_SIZE = (708, 270)
 
     def resize_image(self):
+        """This function allows to resize image with PIL library
+        """
         image = Image.open(self.image)
         image.thumbnail(self.IMAGE_MAX_SIZE)
         image.save(self.image.path)
 
     def save(self, *args, **kwargs):
+        """This function overrides the save function to use the
+        previous save function and automatically reduce the size
+        of saved images.
+        """
         super().save(*args, **kwargs)
         if self.image:
             self.resize_image()
@@ -41,7 +47,6 @@ class Review(models.Model):
 
 
 class UserFollows(models.Model):
-    # Your UserFollows model definition goes here
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              on_delete=models.CASCADE, related_name='user')
     followed_user = models.ForeignKey(settings.AUTH_USER_MODEL,

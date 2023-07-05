@@ -4,7 +4,6 @@
         <form method="POST" action= "{% url 'unsubscribe' user_follows.id %}">
             {% csrf_token %}
             <button type='submit'  class="btn btn-outline-secondary"  id="button-addon2">Désabonner</button> 
-            <p>ID  : {{user_follows.id }}</p>
         </form>
     </div>
     

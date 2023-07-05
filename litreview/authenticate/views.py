@@ -7,11 +7,28 @@ from . import forms
 
 
 def logout_user(request):
+    """Simple log out django defaut function
+
+    Args:
+        request (GET): User model_
+
+    Returns:
+        redirect: login page
+    """
     logout(request)
     return redirect('login')
 
 
 def login_page(request):
+    """This function allows user to log himself 
+    by filling the form
+
+    Args:
+        request (POST): Login form for user model
+
+    Returns:
+        render: main home page
+    """
     form = forms.LoginForm()
     message = ''
     if request.method == 'POST':
@@ -31,6 +48,14 @@ def login_page(request):
 
 
 def signup_page(request):
+    """This function allows new user to creat account
+
+    Args:
+        request (POST): User model
+
+    Returns:
+        render : login page
+    """
     form = forms.SignupForm()
     if request.method == "POST":
         form = forms.SignupForm(request.POST)

@@ -2,10 +2,10 @@
 
 
 {% for user_follows  in following_user %}
-    <div class="alert alert-info col-lg-10 text-center">
-        
+    <div class="alert alert-secondary col-lg-10">
+        <div class=" text-center">
         {{user_follows.followed_user}}
-        
+        </div>        
   
     </div>    
     {% include 'blog/unsubscribe.html' %}
@@ -19,9 +19,11 @@
     
 <h3 class="text-center p-3 my-3">Abonnés</h3>
 {% for username in followed_by_user %}
-<div class="alert alert-primary  col-lg-10 text-center">
-    {{username.user}}
-</div>        
+
+    <div class="alert alert-secondary col-lg-10">
+        <p class="text-center">{{username.user}}</p>
+    </div>
+
 
 {% endfor %}
 
