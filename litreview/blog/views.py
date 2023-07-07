@@ -13,16 +13,8 @@ from datetime import datetime
 
 
 @login_required
-def home(request):
-    """This function display main page, sorting Ticket and Review
-    from users followed by user logged. If user followed has no ticket or review or
-    if logged user has no subscriptions, a message is displayed
-
-    Args:
-        request (GET): UserFollow Ticket and Review models
-
-    Returns:
-        render: main feed page
+def main_feed(request):
+    """This function displays the feed subscriptions of the logged in user
     """
     message = None
     pair = models.UserFollows.objects.all().exclude(
@@ -59,14 +51,7 @@ def home(request):
 
 @login_required
 def creat_ticket(request):
-    """This function allows user to creat a Ticket
 
-    Args:
-        request (POST): Ticket models
-
-    Returns:
-        render: home page after Ticket was created
-    """
     ticket_form = forms.TicketForms()
     if request.method == "POST":
         ticket_form = forms.TicketForms(request.POST, request.FILES)
@@ -80,15 +65,7 @@ def creat_ticket(request):
 
 @login_required
 def delete_ticket(request, ticket_id):
-    """This function allows user looged to delete a Ticket he made
 
-    Args:
-        request (POST): Ticket model
-        review_id (id): Ticket model
-
-    Returns:
-        render: posts page after Ticket was deleted
-    """
     if request.method == "POST":
         ticket = get_object_or_404(models.Ticket, id=ticket_id)
         ticket.delete()
@@ -98,15 +75,7 @@ def delete_ticket(request, ticket_id):
 
 @login_required
 def creat_review(request, ticket_id):
-    """This function allows user to creat a review
 
-    Args:
-        request (POST): Ticket and Review models
-        ticket_id (id): ticket id to base Review on
-
-    Returns:
-        render: posts page after Review was created
-    """
     ticket_preview = get_object_or_404(models.Ticket, id=ticket_id)
     review_form = forms.ReviewForms()
     if request.method == "POST":
@@ -125,15 +94,7 @@ def creat_review(request, ticket_id):
 
 @login_required
 def delete_review(request, review_id):
-    """This function allows user looged to delete a Review he made
 
-    Args:
-        request (POST): Review model
-        review_id (id): Review model
-
-    Returns:
-        render: posts page after Review was deleted
-    """
     if request.method == "POST":
         review = get_object_or_404(models.Review, id=review_id)
         review.delete()
@@ -143,15 +104,7 @@ def delete_review(request, review_id):
 
 @login_required
 def creat_ticket_and_review(request):
-    """This function allows logged user to creat a Ticket and a Review to this ticket
-    in the same time, based on Ticket and Review forms
 
-    Args:
-        request (post): Ticket and Review models
-
-    Returns:
-        render: main page
-    """
     ticket_form = forms.TicketForms()
     review_form = forms.ReviewForms()
     if request.method == "POST":
@@ -172,15 +125,7 @@ def creat_ticket_and_review(request):
 
 @login_required
 def modify_ticket(request, ticket_id):
-    """This function allow user to modify a ticket he made
 
-    Args:
-        request (POST): Ticket with modification
-        ticket_id (id): Ticket model
-
-    Returns:
-        redirect: redirect to posts page after Ticket modification saved
-    """
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
     ticket_form = forms.TicketForms(instance=ticket)
     if request.method == "POST":
@@ -201,17 +146,7 @@ def modify_ticket(request, ticket_id):
 
 @login_required
 def modify_review(request, review_id):
-    """This function allows user logged to modify a Review he made.
-    firt part GET Review and Ticket concerned. Then
-    allow modification in Review form.
 
-    Args:
-        request (POST): Review model
-        review_id (id): Review model
-
-    Returns:
-        render: to posts page after Review modification saved
-    """
     review = get_object_or_404(models.Review, id=review_id)
     review_form = forms.ReviewForms(instance=review)
     ticket_preview = models.Ticket.objects.get(pk=review.ticket_id)
@@ -234,15 +169,8 @@ def modify_review(request, review_id):
 
 
 @login_required
-def my_posts(request):
-    """This function sort posts page with Ticket and Review
-    by time_created attribute
-
-    Args:
-        request (GET): Ticket and Review models
-
-    Returns:
-        render: posts page sorted
+def posts(request):
+    """This function displays the posts feed of the logged in user
     """
 
     reviews = models.Review.objects.filter(user_id=request.user.id)
@@ -260,15 +188,9 @@ def my_posts(request):
 
 @login_required
 def subscription_main_page(request):
-    """First, this function GET all users in db to help a search.
-    Then POST request creat link as UserFollow if user searched exist.
-    If not when user POST, he get an error message back.
-
-    Args:
-        request (POST): to UserFollows model
-
-    Returns:
-        render: render user to main page after save new UserFollows
+    """This function GET all users in db to help a search with autocompletion in template.
+    Then POST request creat a UserFollow if user searched exist.
+    If not get an error message back.
     """
     user = get_user_model()
     exist = User.objects.exclude(pk=request.user.id)
@@ -300,15 +222,7 @@ def subscription_main_page(request):
 
 @login_required
 def unsubscribe(request, id):
-    """This function allows logged user to unfollow another user
 
-    Args:
-        request (POST): to UserFollows model
-        id (id): logged user
-
-    Returns:
-        redirect: redirect user to main page after delete UserFollows
-    """
     if request.method == 'POST':
         userfollows = get_object_or_404(models.UserFollows, id=id)
         userfollows.delete()

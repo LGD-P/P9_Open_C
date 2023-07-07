@@ -19,16 +19,15 @@ class Ticket(models.Model):
     IMAGE_MAX_SIZE = (708, 270)
 
     def resize_image(self):
-        """This function allows to resize image with PIL library
+        """This function resize image with PIL library and save
         """
         image = Image.open(self.image)
         image.thumbnail(self.IMAGE_MAX_SIZE)
         image.save(self.image.path)
 
     def save(self, *args, **kwargs):
-        """This function overrides the save function to use the
-        previous save function and automatically reduce the size
-        of saved images.
+        """This function overrides the save function using resize_image
+        and automatically reduce the size of saved images.
         """
         super().save(*args, **kwargs)
         if self.image:
