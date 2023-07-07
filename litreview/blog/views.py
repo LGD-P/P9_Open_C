@@ -18,10 +18,11 @@ def main_feed(request):
     """
     message = None
     pair = models.UserFollows.objects.all().exclude(
-        followed_user=request.user)
-
+        followed_user=request.user).filter(user=request.user)
+   
     if len(pair) > 0:
-        followed_users = [p.followed_user for p in pair]
+       
+        followed_users = [p.user for p in pair] + [p.followed_user for p in pair]
 
         posts = models.Ticket.objects.filter(
             user__in=followed_users)
