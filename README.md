@@ -58,28 +58,38 @@ Avant toute chose on clone le répository git:
 
     git clone https://github.com/LGD-P/P9_Open_C.git
 
-Une fois le projet cloné on crée et on active l'environnement virtuel:
 
-    python3 -m venv env
+On se place dans le dossier de notre application: 
+
+    cd litreview
+
+Une fois dans le projet on crée et on active l'environnement virtuel:
+
+    python3 -m venv .venv
 
 suivi de:
 
-    source env/bin/activate
+    source .venv/bin/activate
 
 Puis on lance l'installation des modules nécessaires au fonctionnement du script:
 
     pip install -r requirements.txt
 
-On se place dans le dossier de notre application: 
 
-    cd litreview
+On créer une première migration:
+
+    python3 manage.py makemigrations
+
+On application la migration: 
+
+    python3 manage.py migrate
 
 Il n'y a plus qu'à lancer Django:
 
     python3 manage.py runserver
 
 
-*En général c'est le port 8000 qui est ouvert il n'y a plus qu'a suivre le lien http://....... pour accéder à l'application.*
+*En général c'est le port 8000 qui est ouvert il n'y a plus qu'a suivre le lien : "Starting development server at http://......." pour accéder à l'application.*
 
 
 Le répository est fourni avec une base de données,  dans la page abonnement, vous pouvez suivre les deux utilisateurs Pierre et Marie déjà créés, pour avoir une idée de l'expérience utilisateur.
