@@ -20,12 +20,12 @@
 
     {% if post.content_type == 'TICKET' %}
         <div class='container p-3 my-3 border'>
-            {% include 'blog/ticket-flux.html' %}
+            {% include 'blog/ticket-feed.html' %}
             {% include "blog/button-creat-review.html" %}
         </div>
         {% else %}
         <div class='container p-3 my-3 border'>
-            {% include 'blog/review-flux.html' %}
+            {% include 'blog/review-feed.html' %}
         </div>
     {% endif %}
     

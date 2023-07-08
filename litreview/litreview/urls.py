@@ -27,7 +27,7 @@ urlpatterns = [
     path('vz/58/agc/68/ztr/75hts/', admin.site.urls),
     path('', authenticate.views.login_page, name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
-    path('home/', blog.views.main_feed, name='home'),
+    path('main-feed/', blog.views.main_feed, name='home'),
     path("signup/", authenticate.views.signup_page, name="signup"),
     path('tickets/add/', blog.views.creat_ticket, name='creat-ticket'),
     path('tickets/<ticket_id>/review/add',

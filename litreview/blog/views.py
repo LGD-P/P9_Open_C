@@ -47,11 +47,11 @@ def main_feed(request):
         if len(posts_and_reviews) == 0:
             message = "Pas de post pour l'instant"
 
-        return render(request, "blog/home.html", context={"flux": posts_and_reviews, 'pair': pair, "message": message})
+        return render(request, "blog/main-feed.html", context={"flux": posts_and_reviews, 'pair': pair, "message": message})
 
     else:
         subscribe_an_account = "Suivez quelqu'un pour obtenir du contenu dans votre flux"
-        return render(request, "blog/home.html", context={"subscribe_an_account": subscribe_an_account})
+        return render(request, "blog/main-feed.html", context={"subscribe_an_account": subscribe_an_account})
 
 
 @login_required
