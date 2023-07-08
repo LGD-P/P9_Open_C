@@ -9,7 +9,8 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'blog/styles.css' %}" />
     {% include 'navbar.html' %}
-</head>
+    {{user}}
+    </head>
 
 <body class="container-fluid">
     {% block content %}

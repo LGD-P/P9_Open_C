@@ -19,10 +19,13 @@ def main_feed(request):
     message = None
     pair = models.UserFollows.objects.all().exclude(
         followed_user=request.user).filter(user=request.user)
-   
+
     if len(pair) > 0:
-       
-        followed_users = [p.user for p in pair] + [p.followed_user for p in pair]
+
+        followed_users = [p.user for p in pair] + \
+            [p.followed_user for p in pair]
+
+        print(followed_users)
 
         posts = models.Ticket.objects.filter(
             user__in=followed_users)
@@ -30,8 +33,9 @@ def main_feed(request):
         posts = posts.annotate(content_type=Value('TICKET', CharField()))
 
         reviews = models.Review.objects.filter(
-            user__in=followed_users)
+            ticket__in=posts)
 
+        print(reviews)
         reviews = reviews.annotate(
             content_type=Value('REVIEW', CharField()))
 
