@@ -76,10 +76,6 @@ Puis on lance l'installation des modules nécessaires au fonctionnement du scrip
     pip install -r requirements.txt
 
 
-On créer une première migration:
-
-    python3 manage.py makemigrations
-
 On application la migration: 
 
     python3 manage.py migrate

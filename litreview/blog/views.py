@@ -25,8 +25,6 @@ def main_feed(request):
         followed_users = [p.user for p in pair] + \
             [p.followed_user for p in pair]
 
-        print(followed_users)
-
         posts = models.Ticket.objects.filter(
             user__in=followed_users)
 
@@ -35,7 +33,6 @@ def main_feed(request):
         reviews = models.Review.objects.filter(
             ticket__in=posts)
 
-        print(reviews)
         reviews = reviews.annotate(
             content_type=Value('REVIEW', CharField()))
 
