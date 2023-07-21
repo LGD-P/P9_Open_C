@@ -1,4 +1,5 @@
 
+from django.http import HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import get_user_model
@@ -129,6 +130,10 @@ def creat_ticket_and_review(request):
 def modify_ticket(request, ticket_id):
 
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
+
+    if not ticket.is_owner(request.user):
+        return HttpResponse("Ce ticket ne vous appartient pas, vous ne pouvez pas le modifier.")
+
     ticket_form = forms.TicketForms(instance=ticket)
     if request.method == "POST":
         ticket_form = forms.TicketForms(
@@ -150,6 +155,11 @@ def modify_ticket(request, ticket_id):
 def modify_review(request, review_id):
 
     review = get_object_or_404(models.Review, id=review_id)
+
+    if not review.is_owner(request.user):
+        return HttpResponse(
+            "Cette review ne vous appartient pas, vous ne pouvez pas la modifier.")
+
     review_form = forms.ReviewForms(instance=review)
     ticket_preview = models.Ticket.objects.get(pk=review.ticket_id)
 
@@ -210,7 +220,7 @@ def subscription_main_page(request):
                 username=request.POST["to_follow"])
             if user_followed == user:
                 message = "Vous ne pouvez pas vous abonné à vous même"
-            if models.UserFollows.objects.filter(user=user, followed_user=user_followed).exists():
+            elif models.UserFollows.objects.filter(user=user, followed_user=user_followed).exists():
                 message = "Vous êtes déjà abonné à cette personne"
 
             else:

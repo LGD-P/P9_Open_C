@@ -33,6 +33,9 @@ class Ticket(models.Model):
         if self.image:
             self.resize_image()
 
+    def is_owner(self, user):
+        return self.user == user
+
 
 class Review(models.Model):
     ticket = models.ForeignKey(to=Ticket, on_delete=models.CASCADE)
@@ -43,6 +46,9 @@ class Review(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     time_created = models.DateTimeField(auto_now_add=True)
+
+    def is_owner(self, user):
+        return self.user == user
 
 
 class UserFollows(models.Model):
