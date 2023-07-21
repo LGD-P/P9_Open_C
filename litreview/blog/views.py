@@ -204,11 +204,15 @@ def subscription_main_page(request):
 
     if request.method == 'POST':
         user = request.user
+
         try:
             user_followed = User.objects.get(
                 username=request.POST["to_follow"])
+            if user_followed == user:
+                message = "Vous ne pouvez pas vous abonné à vous même"
             if models.UserFollows.objects.filter(user=user, followed_user=user_followed).exists():
                 message = "Vous êtes déjà abonné à cette personne"
+
             else:
                 new_pair = models.UserFollows(
                     user=user, followed_user=user_followed)
