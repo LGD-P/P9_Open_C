@@ -50,7 +50,7 @@ L'application doit permettre de faire fonctionner un site de critiques de livres
 ----------
 
 
-## Mise en place du projet (Python3.9):
+## Mise en place du projet (Python3.9+):
 
 Pré-requis: se placer depuis le terminal dans le dossier où l'on exécute le script:
 
