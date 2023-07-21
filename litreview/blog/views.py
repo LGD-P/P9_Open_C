@@ -71,8 +71,12 @@ def delete_ticket(request, ticket_id):
 
     if request.method == "POST":
         ticket = get_object_or_404(models.Ticket, id=ticket_id)
-        ticket.delete()
-        return redirect("posts")
+        if not ticket.is_owner(request.user):
+            return HttpResponse(
+                "Ce ticket ne vous appartient pas, vous ne pouvez pas la modifier.")
+        else:
+            ticket.delete()
+            return redirect("posts")
     return render(request, 'blog/button-modal-delete-ticket', context={"ticket": ticket})
 
 
@@ -100,8 +104,12 @@ def delete_review(request, review_id):
 
     if request.method == "POST":
         review = get_object_or_404(models.Review, id=review_id)
-        review.delete()
-        return redirect("posts")
+        if not review.is_owner(request.user):
+            return HttpResponse(
+                "Cette review ne vous appartient pas, vous ne pouvez pas la supprimer.")
+        else:
+            review.delete()
+            return redirect("posts")
     return render(request, 'blog/button-modal-delete-review.html', context={"review": review})
 
 
