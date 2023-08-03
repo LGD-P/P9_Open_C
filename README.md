@@ -9,6 +9,12 @@
 
 L'application doit permettre de faire fonctionner un site de critiques de livres. Principalement lire,  publier ou demander, des articles ou critiques de livres. 
 
+-----------------
+<p align="center">
+<img src="demo.gif" width = 1000>
+</p>
+
+
 ## Les fonctionnalités:
 
     • Se connecter ou s'inscrire - le site ne devra pas être accessible à un utilisateur non connecté.
