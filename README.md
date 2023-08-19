@@ -62,34 +62,35 @@ Pré-requis: se placer depuis le terminal dans le dossier où l'on exécute le s
 
 Avant toute chose on clone le répository git:
 
+```bash
     git clone https://github.com/LGD-P/P9_Open_C.git
-
+```
 
 On se place dans le dossier de notre application: 
-
+```bash
     cd litreview
-
+```
 Une fois dans le projet on crée et on active l'environnement virtuel:
-
+```bash
     python3 -m venv .venv
-
+```
 suivi de:
-
+```
     source .venv/bin/activate
-
+```
 Puis on lance l'installation des modules nécessaires au fonctionnement du script:
-
+```bash
     pip install -r requirements.txt
-
+```
 
 On application la migration: 
-
+```bash
     python3 manage.py migrate
-
+```
 Il n'y a plus qu'à lancer Django:
-
+```bash
     python3 manage.py runserver
-
+```
 
 *En général c'est le port 8000 qui est ouvert il n'y a plus qu'a suivre le lien : "Starting development server at http://......." pour accéder à l'application.*
 
